@@ -1,0 +1,23 @@
+<div class="sudoku-board">
+  <div *ngFor="let row of sudokuGrid.board; index as rowIndex;" class="row">
+    <div *ngFor="let cell of row; index as cellIndex;" class="cell">
+      <input #nums type="text" [(ngModel)]="sudokuGrid.board[rowIndex][cellIndex].value"
+             [disabled]="initialSudokuGrid[rowIndex][cellIndex].value !== 0"
+             [ngStyle]="{'background-color':  getColor(rowIndex, cellIndex),
+                         'color': sudokuGrid.board[rowIndex][cellIndex].value == 0
+                          ? 'transparent' : 'black',
+                        }"
+             maxlength=1 (ngModelChange)="checkSolved()">  
+  </div>
+</div>
+<div *ngIf="solved">
+  <p>Good Job! If you want another puzzle to solve, press the "Generate" button, or refresh the page.</p>
+</div>
+
+<!--<div>
+ <button (click)="regenerate()">Generate (This may take a little)</button>
+</div>
+-->
+
+
+
